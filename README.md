@@ -32,4 +32,4 @@ A: **Make sure you don't have the XCatch.bypass permission**
 
 Q: How do I configure XCatch?
 
-A: The configuration file is in the `XCatch` folder an is named `config.yml`, there are clear instructions of what everything does in the config file.
+A: The configuration file is in the `XCatch` folder an is named `config.yml`, there are clear descriptions of what everything does in the config file.
