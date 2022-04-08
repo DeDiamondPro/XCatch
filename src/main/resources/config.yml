@@ -1,0 +1,74 @@
+############################################################
+# +------------------------------------------------------+ #
+# |               SIMPLE CONFIGURATION                   | #
+# +------------------------------------------------------+ #
+############################################################
+
+# The number of flags a player has to set off before sending an alert to everyone with the 'xcatch.alert' permission
+# 0 for off
+alert-flags: 1
+
+# The number of flags a player has to set off before automatically banning that player
+# 0 for off
+ban-flags: 0
+
+# The duration (in days) that a player gets banned for
+# 0 for forever
+ban-duration: 30
+
+# The reason a player sees when they get banned
+ban-reason: "§8[§cXCatch§8] §7You have been banned for §cx-ray§7."
+
+# The date format used, for more info see https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
+date-format: "dd-MM-yyyy 'at' HH:mm z"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     ADVANCED                         | #
+# +------------------------------------------------------+ #
+############################################################
+# Only touch this if you know what you're doing!
+# This could make it so XCatch doesn't pick up x-ray or gives a lot of false flags
+
+# The ores XCatch flags people for and how many they have to mine without changes being reset
+# Format: MATERIAL: AMOUNT
+# List of allowed materials: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+rare-ores:
+  - ANCIENT_DEBRIS: 8
+  - EMERALD_ORE: 12
+  - DEEPSLATE_EMERALD_ORE: 12
+  - DIAMOND_ORE: 16
+  - DEEPSLATE_DIAMOND_ORE: 16
+  - GOLD_ORE: 24
+  - DEEPSLATE_GOLD_ORE: 24
+  - IRON_ORE: 32
+  - DEEPSLATE_IRON_ORE: 32
+  - REDSTONE_ORE: 32
+  - DEEPSLATE_REDSTONE_ORE: 32
+  - LAPIS_ORE: 32
+  - DEEPSLATE_LAPIS_ORE: 32
+  - COAL_ORE: 48
+  - DEEPSLATE_COAL_ORE: 48
+  - COPPER_ORE: 48
+  - DEEPSLATE_COPPER_ORE: 48
+  - NETHER_GOLD_ORE: 48
+  - NETHER_QUARTZ_ORE: 64
+
+# The difference in angle between the average angle for the current direction and the new angle to trigger a direction change
+change-angle: 60
+
+# How long it should keep how many direction changes there have been, restarts counting with a new change
+direction-change-retention: 60
+
+# The maximum amount of pending direction changes
+max-pending: 3
+
+# Period after mining a rare ore that no direction changes are recorded in seconds
+grace-period: 1
+
+# How many direction changes are required for a flag
+changes-for-flag: 5
+
+# How long a flag should be kept in minutes, this does not remove flags in /xcatch view.
+# This only changes how long flags should be kept for alerting staff or banning the player.
+flag-retention: 30
