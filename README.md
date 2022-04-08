@@ -11,7 +11,7 @@ XCatch analizes how a player is mining by looking it how many turns it makes and
    ![image](https://user-images.githubusercontent.com/67508414/162445888-556cf94e-2389-4887-ac4c-585e1af2b859.png)![image](https://user-images.githubusercontent.com/67508414/162445990-1259dd00-0589-4ab7-91e8-37223e3e9b26.png)
 ## Why use this over other plugins
 - Plugins that hide ores (like Orebfuscator) are generally very CPU intensive, while XCatch is not.
-- Plugins that announce when a player has mined a lot of ores (like OreAnnouncer) have way more false flags when players are just lukcy/when you find a big ore vein
+- Plugins that announce when a player has mined a lot of ores (like OreAnnouncer) have way more false flags when players are just lucky or when they find a big ore vein
 ## Commands
 - /xcatch help, shows all commands.
 - /xcatch view \[\<player>], shows flags of all players or the player specified.
