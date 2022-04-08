@@ -10,7 +10,7 @@ commands:
 permissions:
   xcatch.*:
     description: Gives you all of the XCatch permissions.
-    default: op
+    default: false
     children:
       xcatch.alert: true
       xcatch.bypass: true
