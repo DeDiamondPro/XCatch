@@ -1,6 +1,6 @@
 ############################################################
 # +------------------------------------------------------+ #
-# |               SIMPLE CONFIGURATION                   | #
+# |                Simple Configuration                  | #
 # +------------------------------------------------------+ #
 ############################################################
 
@@ -12,19 +12,114 @@ alert-flags: 1
 # 0 for off
 ban-flags: 0
 
-# The duration (in days) that a player gets banned for
+# The durations a player gets banned for, you can give multiple lengths for how long they should be banned
+# depending on how many previous bans they have
+# s: second
+# m: minute
+# h: hour
+# d: day
+# w: week
+# mo: month
+# y: year
 # 0 for forever
-ban-duration: 30
+ban-durations: ['1d', '1w', '1mo', '1y', '0']
 
-# The reason a player sees when they get banned
-ban-reason: "§8[§cXCatch§8] §7You have been banned for §cx-ray§7."
+# The commands XCatch should execute when a player has been flagged
+# Number specifies how many flags a player must have
+# Ranges can be done with 1-3
+# Available variables:
+# {player}: the player who got flagged
+# {flags}: amount of flags this player has
+# {ore}: ore the player was mining
+# {amount}: amount of that ore the player has mined
+# Example:
+# commands:
+#   - '1':
+#       - 'msg {player} first flag, first warning'
+#   - '2-3':
+#       - 'msg {player} you have been flagged {flags} times'
+#       - 'say {player} is xraying, shame on them
+commands:
+  - '0':
+      - 'This is a placeholder, remove this if you will actually use commands'
 
 # The date format used, for more info see https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
 date-format: "dd-MM-yyyy 'at' HH:mm z"
 
+# Should XCatch check for updates at startup? (using GitHub API)
+check-update: true
+
 ############################################################
 # +------------------------------------------------------+ #
-# |                     ADVANCED                         | #
+# |                     Messages                         | #
+# +------------------------------------------------------+ #
+############################################################
+# Configure XCatch messages
+# Color codes are done with '§'
+
+# The reason a player sees when they get banned
+# Available variables:
+# {player}: the player who got banned
+# {duration}: for how long the player got banned
+# {flags}: amount of flags this player has
+# {ore}: ore the player was mining
+# {amount}: amount of that ore the player has mined
+ban-reason: '§8[§cXCatch§8] §7You have been banned for §cx-ray§7 for §c{duration}§7.'
+
+# Alert message that is sent to staff
+# Available variables:
+# {player}: the player who got flagged
+# {flags}: amount of flags this player has
+# {ore}: ore the player was mining
+# {amount}: amount of that ore the player has mined
+alert-message: '§8[§cXCatch§8] §7Flagged §c{player}§7 for potential §cx-ray§7. §c{player}§7 mined §c{amount} {ore}§7. (§c{flags}§7)'
+
+# Message that is sent to staff if someone gets banned
+# Available variables:
+# {player}: the player who got banned
+# {flags}: amount of flags this player has
+# {ore}: ore the player was mining
+# {amount}: amount of that ore the player has mined
+# {duration}: How long the player has been banned
+ban-message: '§8[§cXCatch§8] §7Banned §c{player}§7 for §cx-ray§7 for §c{duration}§7. §c{player}§7 mined §c{amount} {ore}§7. (§c{flags}§7)'
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    DiscordSRV                        | #
+# +------------------------------------------------------+ #
+############################################################
+# Configuration for DiscordSRV integration
+
+# The id of the channel where you want the Discord message to be sent
+# Leave empty to disable all Discord features
+discord-channel: ''
+
+# Should XCatch send a Discord message for an alert?
+message-alert: true
+
+# Message that gets sent to Discord if an alert is triggered
+# Available variables:
+# {player}: the player who got flagged
+# {flags}: amount of flags this player has
+# {ore}: ore the player was mining
+# {amount}: amount of that ore the player has mined
+alert-message-discord: '[XCatch] Flagged {player} for potential x-ray. {player} mined {amount} {ore}. ({flags})'
+
+# Should XCatch send a Discord message for a ban?
+message-ban: true
+
+# Message that is sent to staff if someone gets banned
+# Available variables:
+# {player}: the player who got banned
+# {flags}: amount of flags this player has
+# {ore}: ore the player was mining
+# {amount}: amount of that ore the player has mined
+# {duration}: How long the player has been banned
+ban-message-discord: '[XCatch] Banned {player} for x-ray. {player} mined {amount} {ore}. ({flags})'
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     Advanced                         | #
 # +------------------------------------------------------+ #
 ############################################################
 # Only touch this if you know what you're doing!

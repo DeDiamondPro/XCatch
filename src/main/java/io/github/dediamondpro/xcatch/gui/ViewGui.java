@@ -83,8 +83,9 @@ public class ViewGui implements Listener {
         for (int i = 45 * (page - 1); i < Math.min(45 * (page), PersistentData.data.actions.get(uuid).size()); i++) {
             ActionData data = PersistentData.data.actions.get(uuid).get(i);
             gui.setItem(i - 45 * (page - 1), Utils.createItem(
-                    data.type == ActionData.ActionType.BAN ? Material.RED_CONCRETE : Material.YELLOW_CONCRETE,
+                    data.type == ActionData.ActionType.BAN ? Material.RED_WOOL : Material.YELLOW_WOOL,
                     data.type == ActionData.ActionType.BAN ? "§cBan" : "§eFlag",
+                    (data.ore != null ? "§7" + data.amount + " " + Utils.capitalize(data.ore) : "§7Unknown Ore"),
                     "§7" + format.format(Date.from(Instant.ofEpochSecond(data.time)))
             ));
         }

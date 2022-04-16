@@ -20,10 +20,20 @@ import com.google.gson.annotations.SerializedName;
 public class ActionData implements Comparable {
     public ActionType type;
     public long time;
+    public String ore;
+    public int amount;
 
+    @Deprecated
     public ActionData(ActionType type, long time) {
         this.type = type;
         this.time = time;
+    }
+
+    public ActionData(ActionType type, long time, String ore, int amount) {
+        this.type = type;
+        this.time = time;
+        this.ore = ore;
+        this.amount = amount;
     }
 
     @Override

@@ -97,7 +97,7 @@ public class XCatchCommand implements CommandExecutor {
             case "reload":
                 XCatch.INSTANCE.reloadConfig();
                 XCatch.config = XCatch.INSTANCE.getConfig();
-                XCatch.loadRareOres();
+                XCatch.loadConfigParts();
                 sender.sendMessage("§8[§cXCatch§8] §7Config reloaded.");
                 return true;
             case "info":
