@@ -21,6 +21,7 @@ import io.github.dediamondpro.xcatch.data.PersistentData;
 import io.github.dediamondpro.xcatch.data.PlayerData;
 import io.github.dediamondpro.xcatch.utils.Utils;
 import org.bukkit.Material;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,10 +32,7 @@ import org.bukkit.inventory.ItemStack;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.TreeMap;
-import java.util.UUID;
+import java.util.*;
 
 public class ViewGui implements Listener {
     private static final SimpleDateFormat format = new SimpleDateFormat(XCatch.config.getString("date-format"));
@@ -83,9 +81,10 @@ public class ViewGui implements Listener {
         for (int i = 45 * (page - 1); i < Math.min(45 * (page), PersistentData.data.actions.get(uuid).size()); i++) {
             ActionData data = PersistentData.data.actions.get(uuid).get(i);
             gui.setItem(i - 45 * (page - 1), Utils.createItem(
-                    data.type == ActionData.ActionType.BAN ? Material.RED_WOOL : Material.YELLOW_WOOL,
+                    data.type == ActionData.ActionType.BAN ? Material.RED_CONCRETE : Material.YELLOW_CONCRETE,
                     data.type == ActionData.ActionType.BAN ? "§cBan" : "§eFlag",
                     (data.ore != null ? "§7" + data.amount + " " + Utils.capitalize(data.ore) : "§7Unknown Ore"),
+                    "§7" + data.x + " " + data.y + " " + data.z + " (click to teleport)",
                     "§7" + format.format(Date.from(Instant.ofEpochSecond(data.time)))
             ));
         }
@@ -135,6 +134,21 @@ public class ViewGui implements Listener {
                         if (page < Math.ceil(PersistentData.data.actions.get(uuid).size() / 45f))
                             openPlayerGui((Player) event.getWhoClicked(), uuid, name, page + 1);
                         break;
+                    default:
+                        if (event.getSlot() < 45 && event.getCurrentItem() != null && (event.getCurrentItem().getType() == Material.RED_CONCRETE
+                                || event.getCurrentItem().getType() == Material.YELLOW_CONCRETE)) {
+                            List<String> lore = event.getCurrentItem().getItemMeta().getLore();
+                            String[] coordinates = lore.get(1).replace("§7", "").split(" ");
+                            if (coordinates.length < 3) return;
+                            try {
+                                int x = Integer.parseInt(coordinates[0]);
+                                int y = Integer.parseInt(coordinates[1]);
+                                int z = Integer.parseInt(coordinates[2]);
+                                event.getWhoClicked().closeInventory();
+                                XCatch.INSTANCE.getServer().dispatchCommand(event.getWhoClicked(), "tp " + x + " " + y + " " + z);
+                            } catch (NumberFormatException ignored) {
+                            }
+                        }
                 }
             }
         }

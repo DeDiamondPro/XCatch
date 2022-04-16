@@ -16,30 +16,30 @@
 package io.github.dediamondpro.xcatch.data;
 
 import com.google.gson.annotations.SerializedName;
+import org.jetbrains.annotations.NotNull;
 
-public class ActionData implements Comparable {
+public class ActionData implements Comparable<ActionData> {
     public ActionType type;
     public long time;
     public String ore;
     public int amount;
+    public int x;
+    public int y;
+    public int z;
 
-    @Deprecated
-    public ActionData(ActionType type, long time) {
-        this.type = type;
-        this.time = time;
-    }
-
-    public ActionData(ActionType type, long time, String ore, int amount) {
+    public ActionData(ActionType type, long time, String ore, int amount, int x, int y, int z) {
         this.type = type;
         this.time = time;
         this.ore = ore;
         this.amount = amount;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     @Override
-    public int compareTo(Object o) {
-        ActionData actionData = (ActionData) o;
-        return (int) (actionData.time - time);
+    public int compareTo(@NotNull ActionData o) {
+        return (int) (o.time - time);
     }
 
     public enum ActionType {

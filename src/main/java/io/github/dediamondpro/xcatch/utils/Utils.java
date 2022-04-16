@@ -20,6 +20,7 @@ import com.google.gson.JsonParser;
 import github.scarsz.discordsrv.dependencies.jda.api.entities.TextChannel;
 import github.scarsz.discordsrv.util.DiscordUtil;
 import io.github.dediamondpro.xcatch.XCatch;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -174,5 +175,12 @@ public class Utils {
             return number * 1000L;
         }
         return number;
+    }
+
+    public static void broadcastTextComponent(TextComponent component, String permission) {
+        for (Player player : XCatch.INSTANCE.getServer().getOnlinePlayers()) {
+            if (!player.hasPermission(permission)) continue;
+            player.spigot().sendMessage(component);
+        }
     }
 }
