@@ -78,9 +78,9 @@ public class OnBlockBreak implements Listener {
                     put("{flags}", String.valueOf(flags.get(uuid).flags));
                     put("{ore}", ore);
                     put("{amount}", String.valueOf(amountMined));
-                    put("{x}", String.valueOf((int)event.getPlayer().getLocation().getX()));
-                    put("{y}", String.valueOf((int)event.getPlayer().getLocation().getY()));
-                    put("{z}", String.valueOf((int)event.getPlayer().getLocation().getZ()));
+                    put("{x}", String.valueOf(location.getBlockX()));
+                    put("{y}", String.valueOf(location.getBlockY()));
+                    put("{z}", String.valueOf(location.getBlockZ()));
                 }};
                 if (XCatch.config.getInt("ban-flags") != 0 && flags.get(uuid).flags >= XCatch.config.getInt("ban-flags")
                         && !event.getPlayer().hasPermission("xcatch.noban")) {
