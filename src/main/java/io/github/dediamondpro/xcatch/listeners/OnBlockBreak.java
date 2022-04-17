@@ -95,7 +95,7 @@ public class OnBlockBreak implements Listener {
                     PersistentData.data.totalBans++;
                 } else if (XCatch.config.getInt("alert-flags") != 0 && flags.get(uuid).flags >= XCatch.config.getInt("alert-flags")) {
                     TextComponent component = new TextComponent(Utils.replaceVariables(XCatch.config.getString("alert-message"), variables));
-                    component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + event.getPlayer().getDisplayName()));
+                    component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + event.getPlayer().getName()));
                     component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§cClick to teleport.").create()));
                     Utils.broadcastTextComponent(component, "xcatch.alert");
                     if (XCatch.config.getBoolean("message-alert"))
