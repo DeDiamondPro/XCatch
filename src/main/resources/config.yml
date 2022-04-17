@@ -32,6 +32,9 @@ ban-durations: ['1d', '1w', '1mo', '1y', '0']
 # {flags}: amount of flags this player has
 # {ore}: ore the player was mining
 # {amount}: amount of that ore the player has mined
+# {x}: X Coordinate location where the ore was found
+# {y}: Y Coordinate location where the ore was found
+# {z}: Z Coordinate location where the ore was found
 # Example:
 # commands:
 #   - '1':
@@ -64,6 +67,9 @@ check-update: true
 # {flags}: amount of flags this player has
 # {ore}: ore the player was mining
 # {amount}: amount of that ore the player has mined
+# {x}: X Coordinate location where the ore was found
+# {y}: Y Coordinate location where the ore was found
+# {z}: Z Coordinate location where the ore was found
 ban-reason: '§8[§cXCatch§8] §7You have been banned for §cx-ray§7 for §c{duration}§7.'
 
 # Alert message that is sent to staff
@@ -72,6 +78,9 @@ ban-reason: '§8[§cXCatch§8] §7You have been banned for §cx-ray§7 for §c{d
 # {flags}: amount of flags this player has
 # {ore}: ore the player was mining
 # {amount}: amount of that ore the player has mined
+# {x}: X Coordinate location where the ore was found
+# {y}: Y Coordinate location where the ore was found
+# {z}: Z Coordinate location where the ore was found
 alert-message: '§8[§cXCatch§8] §7Flagged §c{player}§7 for potential §cx-ray§7. §c{player}§7 mined §c{amount} {ore}§7. (§c{flags}§7)'
 
 # Message that is sent to staff if someone gets banned
@@ -81,6 +90,9 @@ alert-message: '§8[§cXCatch§8] §7Flagged §c{player}§7 for potential §cx-r
 # {ore}: ore the player was mining
 # {amount}: amount of that ore the player has mined
 # {duration}: How long the player has been banned
+# {x}: X Coordinate location where the ore was found
+# {y}: Y Coordinate location where the ore was found
+# {z}: Z Coordinate location where the ore was found
 ban-message: '§8[§cXCatch§8] §7Banned §c{player}§7 for §cx-ray§7 for §c{duration}§7. §c{player}§7 mined §c{amount} {ore}§7. (§c{flags}§7)'
 
 ############################################################
@@ -103,6 +115,9 @@ message-alert: true
 # {flags}: amount of flags this player has
 # {ore}: ore the player was mining
 # {amount}: amount of that ore the player has mined
+# {x}: X Coordinate location where the ore was found
+# {y}: Y Coordinate location where the ore was found
+# {z}: Z Coordinate location where the ore was found
 alert-message-discord: '[XCatch] Flagged {player} for potential x-ray. {player} mined {amount} {ore}. ({flags})'
 
 # Should XCatch send a Discord message for a ban?
@@ -115,6 +130,9 @@ message-ban: true
 # {ore}: ore the player was mining
 # {amount}: amount of that ore the player has mined
 # {duration}: How long the player has been banned
+# {x}: X Coordinate location where the ore was found
+# {y}: Y Coordinate location where the ore was found
+# {z}: Z Coordinate location where the ore was found
 ban-message-discord: '[XCatch] Banned {player} for x-ray. {player} mined {amount} {ore}. ({flags})'
 
 ############################################################
