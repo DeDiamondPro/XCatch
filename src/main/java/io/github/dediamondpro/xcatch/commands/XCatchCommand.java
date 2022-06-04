@@ -37,6 +37,7 @@ public class XCatchCommand implements CommandExecutor {
                             "§8[§cXCatch§8] version " + XCatch.INSTANCE.getDescription().getVersion(),
                             "§7/xcatch help, show this help menu.",
                             "§7/xcatch view [<player>], view a player's recent flags and/or bans.",
+                            "§7/xcatch clear <player>, clear a player's flags.",
                             "§7/xcatch info, get some statics about XCatch on your server.",
                             "§7/xcatch reload, reload XCatch's config.",
                             "§7/xcatch debug <player>, give debug statistics of a player."
