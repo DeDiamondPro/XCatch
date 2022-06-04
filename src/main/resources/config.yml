@@ -28,7 +28,6 @@ ban-durations: ['1d', '1w', '1mo', '1y', '0']
 # Can reduce false flags of people mining ores in their base
 max-height: 256
 
-
 # The date format used, for more info see https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
 date-format: "dd-MM-yyyy 'at' HH:mm z"
 
