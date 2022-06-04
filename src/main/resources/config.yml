@@ -24,6 +24,42 @@ ban-flags: 0
 # 0 for forever
 ban-durations: ['1d', '1w', '1mo', '1y', '0']
 
+# Everything above this height will not be counted
+# Can reduce false flags of people mining ores in their base
+max-height: 256
+
+
+# The date format used, for more info see https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
+date-format: "dd-MM-yyyy 'at' HH:mm z"
+
+# Should XCatch check for updates at startup? (using GitHub API)
+check-update: true
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     Commands                         | #
+# +------------------------------------------------------+ #
+############################################################
+
+# The command executed when you click a flag message
+# Available variables:
+# {player}: the player who got flagged
+# {flags}: amount of flags this player has
+# {ore}: ore the player was mining
+# {amount}: amount of that ore the player has mined
+# {x}: X Coordinate location where the ore was found
+# {y}: Y Coordinate location where the ore was found
+# {z}: Z Coordinate location where the ore was found
+alert-click-command: 'tp {player}'
+
+# The command executed when you click a flag inside the flags gui
+# Available variables:
+# {player}: the player who got flagged
+# {x}: X Coordinate location where the ore was found
+# {y}: Y Coordinate location where the ore was found
+# {z}: Z Coordinate location where the ore was found
+view-click-command: 'tp {x} {y} {z}'
+
 # The commands XCatch should execute when a player has been flagged
 # Number specifies how many flags a player must have
 # Ranges can be done with 1-3
@@ -45,12 +81,6 @@ ban-durations: ['1d', '1w', '1mo', '1y', '0']
 commands:
   - '0':
       - 'This is a placeholder, remove this if you will actually use commands'
-
-# The date format used, for more info see https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
-date-format: "dd-MM-yyyy 'at' HH:mm z"
-
-# Should XCatch check for updates at startup? (using GitHub API)
-check-update: true
 
 ############################################################
 # +------------------------------------------------------+ #

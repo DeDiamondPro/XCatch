@@ -108,6 +108,19 @@ public class XCatchCommand implements CommandExecutor {
                                 "§7Total X-Ray Bans: §c" + PersistentData.data.totalBans
                         });
                 return true;
+            case "clear":
+                if (args.length < 2) {
+                    sender.sendMessage("§8[§cXCatch§8] §cMissing argument <player>.");
+                    return false;
+                }
+                UUID uuid = Utils.getOfflineUUID(args[1]);
+                if (uuid == null || !PersistentData.data.actions.containsKey(uuid)) {
+                    sender.sendMessage("§8[§cXCatch§8] §cPlayer not found or no data available for player.");
+                    return false;
+                }
+                PersistentData.data.actions.remove(uuid);
+                sender.sendMessage("§8[§cXCatch§8] §cFlags of " + args[1] + " has been cleared.");
+                return true;
         }
         sender.sendMessage("§8[§cXCatch§8] §cUnknown sub-command.");
         return false;

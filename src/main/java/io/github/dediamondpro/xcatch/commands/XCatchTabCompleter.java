@@ -31,6 +31,7 @@ public class XCatchTabCompleter implements TabCompleter {
         add("help");
         add("view");
         add("reload");
+        add("clear");
         add("debug");
         add("info");
     }};
@@ -53,6 +54,7 @@ public class XCatchTabCompleter implements TabCompleter {
                 case "reload":
                 case "info":
                     return Collections.emptyList();
+                case "clear":
                 case "debug":
                 case "view":
                     return getPlayerList(args[1]);

@@ -141,11 +141,14 @@ public class ViewGui implements Listener {
                             String[] coordinates = lore.get(1).replace("§7", "").split(" ");
                             if (coordinates.length < 3) return;
                             try {
-                                int x = Integer.parseInt(coordinates[0]);
-                                int y = Integer.parseInt(coordinates[1]);
-                                int z = Integer.parseInt(coordinates[2]);
+                                HashMap<String, String> variables = new HashMap<String, String>() {{
+                                    put("{player}", name);
+                                    put("{x}", coordinates[0]);
+                                    put("{y}", coordinates[1]);
+                                    put("{z}", coordinates[2]);
+                                }};
                                 event.getWhoClicked().closeInventory();
-                                XCatch.INSTANCE.getServer().dispatchCommand(event.getWhoClicked(), "tp " + x + " " + y + " " + z);
+                                XCatch.INSTANCE.getServer().dispatchCommand(event.getWhoClicked(), Utils.replaceVariables(XCatch.config.getString("view-click-command"), variables));
                             } catch (NumberFormatException ignored) {
                             }
                         }

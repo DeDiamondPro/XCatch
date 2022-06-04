@@ -44,6 +44,7 @@ public class OnBlockBreak implements Listener {
         if (event.getPlayer().hasPermission("xcatch.bypass") || event.getClass() != BlockBreakEvent.class) return;
         Block blockBroken = event.getBlock();
         Location location = blockBroken.getLocation();
+        if (location.getBlockY() > XCatch.config.getInt("max-height")) return;
         float dir = event.getPlayer().getEyeLocation().getYaw();
         if (dir < 0) {
             dir = 360 - Math.abs(dir);
@@ -98,7 +99,8 @@ public class OnBlockBreak implements Listener {
                     PersistentData.data.totalBans++;
                 } else if (XCatch.config.getInt("alert-flags") != 0 && flags.get(uuid).flags >= XCatch.config.getInt("alert-flags")) {
                     TextComponent component = new TextComponent(Utils.replaceVariables(XCatch.config.getString("alert-message"), variables));
-                    component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + event.getPlayer().getName()));
+                    component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+                            Utils.replaceVariables("/" + XCatch.config.getString("alert-click-command"), variables)));
                     component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§cClick to teleport.").create()));
                     Utils.broadcastTextComponent(component, "xcatch.alert");
                     if (XCatch.config.getBoolean("message-alert"))

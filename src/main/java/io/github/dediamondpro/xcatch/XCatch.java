@@ -99,6 +99,7 @@ public final class XCatch extends JavaPlugin {
     }
 
     public static void loadConfigParts() {
+        rareOres.clear();
         ArrayList<HashMap<String, Integer>> list = (ArrayList<HashMap<String, Integer>>) config.get("rare-ores");
         if (list != null) {
             for (HashMap<String, Integer> map : list) {
