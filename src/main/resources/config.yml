@@ -189,12 +189,9 @@ rare-ores:
   - DEEPSLATE_REDSTONE_ORE: 32
   - LAPIS_ORE: 32
   - DEEPSLATE_LAPIS_ORE: 32
-  - COAL_ORE: 48
-  - DEEPSLATE_COAL_ORE: 48
   - COPPER_ORE: 48
   - DEEPSLATE_COPPER_ORE: 48
   - NETHER_GOLD_ORE: 48
-  - NETHER_QUARTZ_ORE: 64
 
 # The difference in angle between the average angle for the current direction and the new angle to trigger a direction change
 change-angle: 60
