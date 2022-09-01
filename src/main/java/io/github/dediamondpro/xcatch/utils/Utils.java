@@ -114,12 +114,10 @@ public class Utils {
     private static TextChannel channel = null;
 
     public static void sendMessage(String message) {
-        if (XCatch.config.getString("discord-channel").length() == 18 &&
-                XCatch.INSTANCE.getServer().getPluginManager().getPlugin("DiscordSRV") != null) {
-            if (channel == null)
-                channel = DiscordUtil.getTextChannelById(XCatch.config.getString("discord-channel"));
-            if (channel != null)
-                DiscordUtil.sendMessage(channel, message);
+        if (!XCatch.config.getString("discord-channel").trim().equals("") && XCatch.INSTANCE.getServer().getPluginManager().getPlugin("DiscordSRV") != null) {
+            if (channel == null) channel = DiscordUtil.getTextChannelById(XCatch.config.getString("discord-channel"));
+            if (channel != null) DiscordUtil.sendMessage(channel, message);
+            else XCatch.INSTANCE.logger.warning("Could not find the given discord channel!");
         }
     }
 

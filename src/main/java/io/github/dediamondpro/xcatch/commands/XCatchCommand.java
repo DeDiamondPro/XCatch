@@ -19,12 +19,15 @@ import io.github.dediamondpro.xcatch.XCatch;
 import io.github.dediamondpro.xcatch.data.PersistentData;
 import io.github.dediamondpro.xcatch.gui.ViewGui;
 import io.github.dediamondpro.xcatch.listeners.OnBlockBreak;
+import io.github.dediamondpro.xcatch.utils.FlagHandler;
 import io.github.dediamondpro.xcatch.utils.Utils;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
 
 import java.util.UUID;
 
@@ -40,6 +43,7 @@ public class XCatchCommand implements CommandExecutor {
                             "§7/xcatch clear <player>, clear a player's flags.",
                             "§7/xcatch info, get some statics about XCatch on your server.",
                             "§7/xcatch reload, reload XCatch's config.",
+                            "§7/xcatch test <player>, add a flag to a player to test things",
                             "§7/xcatch debug <player>, give debug statistics of a player."
                     });
             return true;
@@ -54,10 +58,10 @@ public class XCatchCommand implements CommandExecutor {
                     }
                     UUID uuid = player.getUniqueId();
                     sender.sendMessage("§8[§cXCatch§8] §7Debug info for §c" + player.getDisplayName());
-                    if (OnBlockBreak.getFlags().containsKey(uuid) && XCatch.config.getInt("ban-flags") != 0)
-                        sender.sendMessage("§7Flags: §c" + OnBlockBreak.getFlags().get(uuid).flags + "/" + XCatch.config.getInt("ban-flags"));
-                    else if (OnBlockBreak.getFlags().containsKey(uuid))
-                        sender.sendMessage("§7Flags: §c" + OnBlockBreak.getFlags().get(uuid).flags);
+                    if (FlagHandler.flags.containsKey(uuid) && XCatch.config.getInt("ban-flags") != 0)
+                        sender.sendMessage("§7Flags: §c" + FlagHandler.flags.get(uuid).flags + "/" + XCatch.config.getInt("ban-flags"));
+                    else if (FlagHandler.flags.containsKey(uuid))
+                        sender.sendMessage("§7Flags: §c" + FlagHandler.flags.get(uuid).flags);
                     else if (XCatch.config.getInt("ban-flags") != 0)
                         sender.sendMessage("§7Flags: §c0/" + XCatch.config.getInt("ban-flags"));
                     else
@@ -121,6 +125,18 @@ public class XCatchCommand implements CommandExecutor {
                 }
                 PersistentData.data.actions.remove(uuid);
                 sender.sendMessage("§8[§cXCatch§8] §cFlags of " + args[1] + " has been cleared.");
+                return true;
+            case "test":
+                if (args.length < 2) {
+                    sender.sendMessage("§8[§cXCatch§8] §cMissing argument <player>.");
+                    return false;
+                }
+                Player player = XCatch.INSTANCE.getServer().getPlayer(args[1]);
+                if (player == null) {
+                    sender.sendMessage("§8[§cXCatch§8] §cPlayer not found.");
+                    return false;
+                }
+                FlagHandler.addFlag(new BlockBreakEvent(null, player), true);
                 return true;
         }
         sender.sendMessage("§8[§cXCatch§8] §cUnknown sub-command.");

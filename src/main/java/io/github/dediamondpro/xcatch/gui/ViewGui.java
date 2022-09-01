@@ -21,7 +21,6 @@ import io.github.dediamondpro.xcatch.data.PersistentData;
 import io.github.dediamondpro.xcatch.data.PlayerData;
 import io.github.dediamondpro.xcatch.utils.Utils;
 import org.bukkit.Material;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
