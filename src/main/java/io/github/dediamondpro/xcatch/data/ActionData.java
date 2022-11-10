@@ -18,20 +18,24 @@ package io.github.dediamondpro.xcatch.data;
 import com.google.gson.annotations.SerializedName;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.UUID;
+
 public class ActionData implements Comparable<ActionData> {
     public ActionType type;
     public long time;
     public String ore;
     public int amount;
+    public UUID worldUID;
     public int x;
     public int y;
     public int z;
 
-    public ActionData(ActionType type, long time, String ore, int amount, int x, int y, int z) {
+    public ActionData(ActionType type, long time, String ore, int amount, UUID worldUID, int x, int y, int z) {
         this.type = type;
         this.time = time;
         this.ore = ore;
         this.amount = amount;
+        this.worldUID = worldUID;
         this.x = x;
         this.y = y;
         this.z = z;

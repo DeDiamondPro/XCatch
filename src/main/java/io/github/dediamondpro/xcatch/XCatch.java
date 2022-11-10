@@ -24,6 +24,7 @@ import io.github.dediamondpro.xcatch.utils.Utils;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SingleLineChart;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -41,9 +42,12 @@ public final class XCatch extends JavaPlugin {
     public static final HashMap<Integer, ArrayList<String>> commands = new HashMap<>();
     public static int metricFlags = 0;
 
+    private NamespacedKey actionDataKey;
+
     @Override
     public void onEnable() {
         INSTANCE = this;
+        actionDataKey = new NamespacedKey(this, "action_data");
 
         if (!new File(getDataFolder(), "config.yml").exists()) {
             saveDefaultConfig();
@@ -96,6 +100,10 @@ public final class XCatch extends JavaPlugin {
     @Override
     public void onDisable() {
         PersistentData.saveData(getDataFolder().getAbsolutePath() + "/data.json.gz");
+    }
+
+    public NamespacedKey getActionDataKey() {
+        return actionDataKey;
     }
 
     public static void loadConfigParts() {
