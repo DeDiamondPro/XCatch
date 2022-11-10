@@ -144,8 +144,7 @@ public class ViewGui implements Listener {
                     default:
                         if (event.getSlot() < 45 && event.getCurrentItem() != null && (event.getCurrentItem().getType() == Material.RED_CONCRETE
                                 || event.getCurrentItem().getType() == Material.YELLOW_CONCRETE)) {
-                            ItemMeta itemMeta = event.getCurrentItem().getItemMeta();
-                            Integer actionIndex = itemMeta.getPersistentDataContainer().get(
+                            Integer actionIndex = event.getCurrentItem().getItemMeta().getPersistentDataContainer().get(
                                     XCatch.INSTANCE.getActionDataKey(), PersistentDataType.INTEGER
                             );
                             if (actionIndex == null) return;
