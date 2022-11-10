@@ -59,7 +59,7 @@ alert-click-command: 'tp {player}'
 # {y}: Y Coordinate location where the ore was found
 # {z}: Z Coordinate location where the ore was found
 # {world}: The name of the world where the ore was found
-view-click-command: 'tp {x} {y} {z}'
+view-click-command: 'xcatch tp {world} {x} {y} {z}'
 
 # The commands XCatch should execute when a player has been flagged
 # Number specifies how many flags a player must have
