@@ -21,8 +21,9 @@ import io.github.dediamondpro.xcatch.gui.ViewGui;
 import io.github.dediamondpro.xcatch.listeners.OnBlockBreak;
 import io.github.dediamondpro.xcatch.utils.FlagHandler;
 import io.github.dediamondpro.xcatch.utils.Utils;
+import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -44,6 +45,7 @@ public class XCatchCommand implements CommandExecutor {
                             "§7/xcatch info, get some statics about XCatch on your server.",
                             "§7/xcatch reload, reload XCatch's config.",
                             "§7/xcatch test <player>, add a flag to a player to test things",
+                            "§7/xcatch tp <world> <x> <y> <z>, teleport to specific coordinates",
                             "§7/xcatch debug <player>, give debug statistics of a player."
                     });
             return true;
@@ -137,6 +139,31 @@ public class XCatchCommand implements CommandExecutor {
                     return false;
                 }
                 FlagHandler.addFlag(new BlockBreakEvent(null, player), true);
+                return true;
+            case "tp":
+                if (!(sender instanceof Player)) {
+                    sender.sendMessage("§8[§cXCatch§8] §cSince this command teleports you, it can only be used from in-game.");
+                    return true;
+                }
+                if (args.length < 5) {
+                    sender.sendMessage("§8[§cXCatch§8] §cMissing argument <world> <x> <y> <z>.");
+                    return false;
+                }
+                World world = XCatch.INSTANCE.getServer().getWorld(args[1]);
+                if (world == null) {
+                    sender.sendMessage("§8[§cXCatch§8] §cWorld not found.");
+                    return false;
+                }
+                double[] coordinates = new double[3];
+                try {
+                    coordinates[0] = Double.parseDouble(args[2]);
+                    coordinates[1] = Double.parseDouble(args[3]);
+                    coordinates[2] = Double.parseDouble(args[4]);
+                } catch (NumberFormatException ignored) {
+                    sender.sendMessage("§8[§cXCatch§8] §cCoordinates contain invalid argument.");
+                    return false;
+                }
+                ((Player) sender).teleport(new Location(world, coordinates[0], coordinates[1], coordinates[2]));
                 return true;
         }
         sender.sendMessage("§8[§cXCatch§8] §cUnknown sub-command.");
