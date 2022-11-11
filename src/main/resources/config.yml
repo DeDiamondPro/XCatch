@@ -22,7 +22,28 @@ ban-flags: 0
 # mo: month
 # y: year
 # 0 for forever
-ban-durations: ['1d', '1w', '1mo', '1y', '0']
+ban-durations: [ '1d', '1w', '1mo', '1y', '0' ]
+
+# The minimum amount of a type of ore a player has to mine before being able to be flagged
+# Format: MATERIAL: AMOUNT
+# List of allowed materials: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+rare-ores:
+  - ANCIENT_DEBRIS: 8
+  - EMERALD_ORE: 12
+  - DEEPSLATE_EMERALD_ORE: 12
+  - DIAMOND_ORE: 16
+  - DEEPSLATE_DIAMOND_ORE: 16
+  - GOLD_ORE: 24
+  - DEEPSLATE_GOLD_ORE: 24
+  - IRON_ORE: 32
+  - DEEPSLATE_IRON_ORE: 32
+  - REDSTONE_ORE: 32
+  - DEEPSLATE_REDSTONE_ORE: 32
+  - LAPIS_ORE: 32
+  - DEEPSLATE_LAPIS_ORE: 32
+  - COPPER_ORE: 48
+  - DEEPSLATE_COPPER_ORE: 48
+  - NETHER_GOLD_ORE: 48
 
 # Everything above this height will not be counted
 # Can reduce false flags of people mining ores in their base
@@ -138,7 +159,7 @@ ban-message: '§8[§cXCatch§8] §7Banned §c{player}§7 for §cx-ray§7 for §c
 # Configuration for DiscordSRV integration
 
 # The id of the channel where you want the Discord message to be sent
-# Leave empty to disable all Discord features
+# Leave empty to disable all Discord related features
 discord-channel: ''
 
 # Should XCatch send a Discord message for an alert?
@@ -180,42 +201,25 @@ ban-message-discord: '[XCatch] Banned {player} for x-ray. {player} mined {amount
 # Only touch this if you know what you're doing!
 # This could make it so XCatch doesn't pick up x-ray or gives a lot of false flags
 
-# The ores XCatch flags people for and how many they have to mine without changes being reset
-# Format: MATERIAL: AMOUNT
-# List of allowed materials: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
-rare-ores:
-  - ANCIENT_DEBRIS: 8
-  - EMERALD_ORE: 12
-  - DEEPSLATE_EMERALD_ORE: 12
-  - DIAMOND_ORE: 16
-  - DEEPSLATE_DIAMOND_ORE: 16
-  - GOLD_ORE: 24
-  - DEEPSLATE_GOLD_ORE: 24
-  - IRON_ORE: 32
-  - DEEPSLATE_IRON_ORE: 32
-  - REDSTONE_ORE: 32
-  - DEEPSLATE_REDSTONE_ORE: 32
-  - LAPIS_ORE: 32
-  - DEEPSLATE_LAPIS_ORE: 32
-  - COPPER_ORE: 48
-  - DEEPSLATE_COPPER_ORE: 48
-  - NETHER_GOLD_ORE: 48
-
-# The difference in angle between the average angle for the current direction and the new angle to trigger a direction change
-change-angle: 60
-
-# How long it should keep how many direction changes there have been, restarts counting with a new change
-direction-change-retention: 60
-
-# The maximum amount of pending direction changes
-max-pending: 3
-
-# Period after mining a rare ore that no direction changes are recorded in seconds
-grace-period: 1
-
 # How many direction changes are required for a flag
 changes-for-flag: 5
 
-# How long a flag should be kept in minutes, this does not remove flags in /xcatch view.
-# This only changes how long flags should be kept for alerting staff or banning the player.
+# The minimum difference of the angle between the previous direction to trigger a direction change
+change-angle: 60
+
+# How long you have to keep your angle difference below the 'change-angle' field to reset the tracking data on a player in seconds
+# After turning goes back to the value given here
+direction-change-retention: 60
+
+# The maximum amount of pending direction changes
+# A pending direction change is when you mine a block in a different direction but don't actually go in the direction
+# Having a value that is too high might cause false flags when insta-mining
+max-pending: 3
+
+# Period after mining a rare ore that no direction changes are recorded in seconds
+# This is to avoid false flags after mining an ore
+grace-period: 1
+
+# How much time a flag is kept for banning the player or alerting players with the 'xcatch.alert' permission in minutes
+# This does not affect the flags in the /xcatch view
 flag-retention: 30
