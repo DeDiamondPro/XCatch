@@ -158,7 +158,6 @@ public class ViewGui implements Listener {
                                     put("{z}", String.valueOf(actionData.z));
                                 }};
                                 event.getWhoClicked().closeInventory();
-                                XCatch.INSTANCE.getLogger().info(Utils.replaceVariables(XCatch.config.getString("view-click-command"), variables));
                                 XCatch.INSTANCE.getServer().dispatchCommand(event.getWhoClicked(), Utils.replaceVariables(XCatch.config.getString("view-click-command"), variables));
                             } catch (NumberFormatException ignored) {
                             }
