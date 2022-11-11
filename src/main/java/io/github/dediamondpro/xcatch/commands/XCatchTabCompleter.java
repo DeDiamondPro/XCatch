@@ -16,6 +16,7 @@
 package io.github.dediamondpro.xcatch.commands;
 
 import io.github.dediamondpro.xcatch.XCatch;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -25,6 +26,7 @@ import org.bukkit.util.StringUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class XCatchTabCompleter implements TabCompleter {
     private static final ArrayList<String> subCommands = new ArrayList<String>() {{
@@ -33,6 +35,7 @@ public class XCatchTabCompleter implements TabCompleter {
         add("reload");
         add("clear");
         add("test");
+        add("tp");
         add("debug");
         add("info");
     }};
@@ -60,7 +63,11 @@ public class XCatchTabCompleter implements TabCompleter {
                 case "view":
                 case "test":
                     return getPlayerList(args[1]);
+                case "tp":
+                    return getWorldList(args[1]);
             }
+        } else if (args.length <= 5 && args[0].equals("tp")) {
+            return Collections.emptyList();
         }
         return Collections.emptyList();
     }
@@ -76,5 +83,13 @@ public class XCatchTabCompleter implements TabCompleter {
 
         matchedPlayers.sort(String.CASE_INSENSITIVE_ORDER);
         return matchedPlayers;
+    }
+
+    private List<String> getWorldList(String argument) {
+        return StringUtil.copyPartialMatches(
+                argument,
+                XCatch.INSTANCE.getServer().getWorlds().stream().map(World::getName).collect(Collectors.toList()),
+                new ArrayList<>()
+        );
     }
 }

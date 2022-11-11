@@ -49,6 +49,7 @@ check-update: true
 # {x}: X Coordinate location where the ore was found
 # {y}: Y Coordinate location where the ore was found
 # {z}: Z Coordinate location where the ore was found
+# {world}: The name of the world where the ore was found
 alert-click-command: 'tp {player}'
 
 # The command executed when you click a flag inside the flags gui
@@ -57,7 +58,8 @@ alert-click-command: 'tp {player}'
 # {x}: X Coordinate location where the ore was found
 # {y}: Y Coordinate location where the ore was found
 # {z}: Z Coordinate location where the ore was found
-view-click-command: 'tp {x} {y} {z}'
+# {world}: The name of the world where the ore was found
+view-click-command: 'xcatch tp {world} {x} {y} {z}'
 
 # The commands XCatch should execute when a player has been flagged
 # Number specifies how many flags a player must have
@@ -70,6 +72,7 @@ view-click-command: 'tp {x} {y} {z}'
 # {x}: X Coordinate location where the ore was found
 # {y}: Y Coordinate location where the ore was found
 # {z}: Z Coordinate location where the ore was found
+# {world}: The name of the world where the ore was found
 # Example:
 # commands:
 #   - '1':
@@ -99,6 +102,7 @@ commands:
 # {x}: X Coordinate location where the ore was found
 # {y}: Y Coordinate location where the ore was found
 # {z}: Z Coordinate location where the ore was found
+# {world}: The name of the world where the ore was found
 ban-reason: '§8[§cXCatch§8] §7You have been banned for §cx-ray§7 for §c{duration}§7.'
 
 # Alert message that is sent to staff
@@ -110,6 +114,7 @@ ban-reason: '§8[§cXCatch§8] §7You have been banned for §cx-ray§7 for §c{d
 # {x}: X Coordinate location where the ore was found
 # {y}: Y Coordinate location where the ore was found
 # {z}: Z Coordinate location where the ore was found
+# {world}: The name of the world where the ore was found
 alert-message: '§8[§cXCatch§8] §7Flagged §c{player}§7 for potential §cx-ray§7. §c{player}§7 mined §c{amount} {ore}§7. (§c{flags}§7)'
 
 # Message that is sent to staff if someone gets banned
@@ -122,6 +127,7 @@ alert-message: '§8[§cXCatch§8] §7Flagged §c{player}§7 for potential §cx-r
 # {x}: X Coordinate location where the ore was found
 # {y}: Y Coordinate location where the ore was found
 # {z}: Z Coordinate location where the ore was found
+# {world}: The name of the world where the ore was found
 ban-message: '§8[§cXCatch§8] §7Banned §c{player}§7 for §cx-ray§7 for §c{duration}§7. §c{player}§7 mined §c{amount} {ore}§7. (§c{flags}§7)'
 
 ############################################################
@@ -147,6 +153,7 @@ message-alert: true
 # {x}: X Coordinate location where the ore was found
 # {y}: Y Coordinate location where the ore was found
 # {z}: Z Coordinate location where the ore was found
+# {world}: The name of the world where the ore was found
 alert-message-discord: '[XCatch] Flagged {player} for potential x-ray. {player} mined {amount} {ore}. ({flags})'
 
 # Should XCatch send a Discord message for a ban?
@@ -162,6 +169,7 @@ message-ban: true
 # {x}: X Coordinate location where the ore was found
 # {y}: Y Coordinate location where the ore was found
 # {z}: Z Coordinate location where the ore was found
+# {world}: The name of the world where the ore was found
 ban-message-discord: '[XCatch] Banned {player} for x-ray. {player} mined {amount} {ore}. ({flags})'
 
 ############################################################

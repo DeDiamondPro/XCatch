@@ -61,6 +61,7 @@ public class FlagHandler {
             put("{x}", String.valueOf(location.getBlockX()));
             put("{y}", String.valueOf(location.getBlockY()));
             put("{z}", String.valueOf(location.getBlockZ()));
+            put("{world}", location.getWorld().getName());
         }};
         if (XCatch.config.getInt("ban-flags") != 0 && flags.get(uuid).flags >= XCatch.config.getInt("ban-flags")
                 && !event.getPlayer().hasPermission("xcatch.noban")) {
@@ -74,7 +75,7 @@ public class FlagHandler {
             if (XCatch.config.getBoolean("message-ban"))
                 Utils.sendMessage(Utils.replaceVariables(XCatch.config.getString("ban-message-discord"), variables));
             PersistentData.data.actions.get(uuid).add(new ActionData(ActionData.ActionType.BAN, Instant.now().getEpochSecond(), ore, amountMined,
-                    location.getBlockX(), location.getBlockY(), location.getBlockZ()));
+                    location.getWorld().getUID(), location.getBlockX(), location.getBlockY(), location.getBlockZ()));
             PersistentData.data.totalBans++;
         } else if (XCatch.config.getInt("alert-flags") != 0 && flags.get(uuid).flags >= XCatch.config.getInt("alert-flags")) {
             TextComponent component = new TextComponent(Utils.replaceVariables(XCatch.config.getString("alert-message"), variables));
@@ -85,10 +86,10 @@ public class FlagHandler {
             if (XCatch.config.getBoolean("message-alert"))
                 Utils.sendMessage(Utils.replaceVariables(XCatch.config.getString("alert-message-discord"), variables));
             PersistentData.data.actions.get(uuid).add(new ActionData(ActionData.ActionType.FLAG, Instant.now().getEpochSecond(), ore, amountMined,
-                    location.getBlockX(), location.getBlockY(), location.getBlockZ()));
+                    location.getWorld().getUID(), location.getBlockX(), location.getBlockY(), location.getBlockZ()));
         } else // no ban and no alert but still a flag
             PersistentData.data.actions.get(uuid).add(new ActionData(ActionData.ActionType.FLAG, Instant.now().getEpochSecond(), ore, amountMined,
-                    location.getBlockX(), location.getBlockY(), location.getBlockZ()));
+                    location.getWorld().getUID(), location.getBlockX(), location.getBlockY(), location.getBlockZ()));
         if (XCatch.commands.containsKey(flags.get(uuid).flags)) {
             ArrayList<String> commands = XCatch.commands.get(flags.get(uuid).flags);
             for (String command : commands) {

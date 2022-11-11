@@ -30,6 +30,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -76,6 +77,23 @@ public class Utils {
         if (lore != null)
             itemMeta.setLore(Arrays.asList(lore));
         itemMeta.setDisplayName(displayName);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
+    public static ItemStack createActionDataItem(Material material, String displayName, int actionDataIndex, String... lore) {
+        ItemStack itemStack = new ItemStack(material);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        itemStack.setItemMeta(itemMeta);
+        if (lore != null)
+            itemMeta.setLore(Arrays.asList(lore));
+        itemMeta.setDisplayName(displayName);
+        itemMeta.getPersistentDataContainer().set(
+                XCatch.INSTANCE.getActionDataKey(),
+                PersistentDataType.INTEGER,
+                actionDataIndex
+        );
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }

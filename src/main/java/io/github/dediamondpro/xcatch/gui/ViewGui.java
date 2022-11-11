@@ -21,12 +21,15 @@ import io.github.dediamondpro.xcatch.data.PersistentData;
 import io.github.dediamondpro.xcatch.data.PlayerData;
 import io.github.dediamondpro.xcatch.utils.Utils;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -79,11 +82,16 @@ public class ViewGui implements Listener {
 
         for (int i = 45 * (page - 1); i < Math.min(45 * (page), PersistentData.data.actions.get(uuid).size()); i++) {
             ActionData data = PersistentData.data.actions.get(uuid).get(i);
-            gui.setItem(i - 45 * (page - 1), Utils.createItem(
+
+            World world = XCatch.INSTANCE.getServer().getWorld(data.worldUID);
+            String worldName = world == null ? p.getWorld().getName() : world.getName();
+
+            gui.setItem(i - 45 * (page - 1), Utils.createActionDataItem(
                     data.type == ActionData.ActionType.BAN ? Material.RED_CONCRETE : Material.YELLOW_CONCRETE,
                     data.type == ActionData.ActionType.BAN ? "§cBan" : "§eFlag",
+                    i,
                     (data.ore != null ? "§7" + data.amount + " " + Utils.capitalize(data.ore) : "§7Unknown Ore"),
-                    "§7" + data.x + " " + data.y + " " + data.z + " (click to teleport)",
+                    "§7" + worldName + " " + data.x + " " + data.y + " " + data.z + " (click to teleport)",
                     "§7" + format.format(Date.from(Instant.ofEpochSecond(data.time)))
             ));
         }
@@ -136,15 +144,20 @@ public class ViewGui implements Listener {
                     default:
                         if (event.getSlot() < 45 && event.getCurrentItem() != null && (event.getCurrentItem().getType() == Material.RED_CONCRETE
                                 || event.getCurrentItem().getType() == Material.YELLOW_CONCRETE)) {
-                            List<String> lore = event.getCurrentItem().getItemMeta().getLore();
-                            String[] coordinates = lore.get(1).replace("§7", "").split(" ");
-                            if (coordinates.length < 3) return;
+                            Integer actionIndex = event.getCurrentItem().getItemMeta().getPersistentDataContainer().get(
+                                    XCatch.INSTANCE.getActionDataKey(), PersistentDataType.INTEGER
+                            );
+                            if (actionIndex == null) return;
+                            ActionData actionData = PersistentData.data.actions.get(uuid).get(actionIndex);
+                            World world = XCatch.INSTANCE.getServer().getWorld(actionData.worldUID);
+                            String worldName = world == null ? event.getWhoClicked().getWorld().getName() : world.getName();
                             try {
                                 HashMap<String, String> variables = new HashMap<String, String>() {{
                                     put("{player}", name);
-                                    put("{x}", coordinates[0]);
-                                    put("{y}", coordinates[1]);
-                                    put("{z}", coordinates[2]);
+                                    put("{world}", worldName);
+                                    put("{x}", String.valueOf(actionData.x));
+                                    put("{y}", String.valueOf(actionData.y));
+                                    put("{z}", String.valueOf(actionData.z));
                                 }};
                                 event.getWhoClicked().closeInventory();
                                 XCatch.INSTANCE.getServer().dispatchCommand(event.getWhoClicked(), Utils.replaceVariables(XCatch.config.getString("view-click-command"), variables));
