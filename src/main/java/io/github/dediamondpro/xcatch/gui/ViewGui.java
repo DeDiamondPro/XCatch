@@ -149,10 +149,12 @@ public class ViewGui implements Listener {
                             );
                             if (actionIndex == null) return;
                             ActionData actionData = PersistentData.data.actions.get(uuid).get(actionIndex);
+                            World world = XCatch.INSTANCE.getServer().getWorld(actionData.worldUID);
+                            String worldName = world == null ? event.getWhoClicked().getWorld().getName() : world.getName();
                             try {
                                 HashMap<String, String> variables = new HashMap<String, String>() {{
                                     put("{player}", name);
-                                    put("{world}", XCatch.INSTANCE.getServer().getWorld(actionData.worldUID).getName());
+                                    put("{world}", worldName);
                                     put("{x}", String.valueOf(actionData.x));
                                     put("{y}", String.valueOf(actionData.y));
                                     put("{z}", String.valueOf(actionData.z));
