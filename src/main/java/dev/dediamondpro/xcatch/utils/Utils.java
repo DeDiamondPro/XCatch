@@ -13,13 +13,28 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-package io.github.dediamondpro.xcatch.utils;
+/*
+ * This file is part of XCatch.
+ *
+ * XCatch is free software: you can redistribute it and/or modify it under the terms of the GNU General
+ * Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ *
+ * XCatch is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with Foobar. If not, see
+ * <https://www.gnu.org/licenses/>.
+ */
+
+package dev.dediamondpro.xcatch.utils;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import github.scarsz.discordsrv.dependencies.jda.api.entities.TextChannel;
 import github.scarsz.discordsrv.util.DiscordUtil;
-import io.github.dediamondpro.xcatch.XCatch;
+import dev.dediamondpro.xcatch.XCatch;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;

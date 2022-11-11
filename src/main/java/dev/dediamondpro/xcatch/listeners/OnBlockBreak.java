@@ -13,13 +13,28 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-package io.github.dediamondpro.xcatch.listeners;
+/*
+ * This file is part of XCatch.
+ *
+ * XCatch is free software: you can redistribute it and/or modify it under the terms of the GNU General
+ * Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ *
+ * XCatch is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with Foobar. If not, see
+ * <https://www.gnu.org/licenses/>.
+ */
 
-import io.github.dediamondpro.xcatch.XCatch;
-import io.github.dediamondpro.xcatch.data.*;
-import io.github.dediamondpro.xcatch.utils.FlagHandler;
-import io.github.dediamondpro.xcatch.utils.Utils;
-import net.md_5.bungee.api.chat.*;
+package dev.dediamondpro.xcatch.listeners;
+
+import dev.dediamondpro.xcatch.XCatch;
+import dev.dediamondpro.xcatch.data.HeadingData;
+import dev.dediamondpro.xcatch.data.PendingChangeData;
+import dev.dediamondpro.xcatch.utils.FlagHandler;
+import dev.dediamondpro.xcatch.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -31,7 +46,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 public class OnBlockBreak implements Listener {

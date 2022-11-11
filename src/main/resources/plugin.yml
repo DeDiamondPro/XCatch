@@ -1,6 +1,6 @@
 name: XCatch
 version: '${project.version}'
-main: io.github.dediamondpro.xcatch.XCatch
+main: dev.dediamondpro.xcatch.XCatch
 api-version: 1.13
 authors: [ DeDiamondPro ]
 description: A simple, efficient plugin to catch x-rayers.

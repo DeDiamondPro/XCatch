@@ -13,14 +13,29 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-package io.github.dediamondpro.xcatch;
+/*
+ * This file is part of XCatch.
+ *
+ * XCatch is free software: you can redistribute it and/or modify it under the terms of the GNU General
+ * Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ *
+ * XCatch is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with Foobar. If not, see
+ * <https://www.gnu.org/licenses/>.
+ */
 
-import io.github.dediamondpro.xcatch.commands.XCatchCommand;
-import io.github.dediamondpro.xcatch.commands.XCatchTabCompleter;
-import io.github.dediamondpro.xcatch.data.PersistentData;
-import io.github.dediamondpro.xcatch.gui.ViewGui;
-import io.github.dediamondpro.xcatch.listeners.OnBlockBreak;
-import io.github.dediamondpro.xcatch.utils.Utils;
+package dev.dediamondpro.xcatch;
+
+import dev.dediamondpro.xcatch.commands.XCatchCommand;
+import dev.dediamondpro.xcatch.commands.XCatchTabCompleter;
+import dev.dediamondpro.xcatch.data.PersistentData;
+import dev.dediamondpro.xcatch.listeners.OnBlockBreak;
+import dev.dediamondpro.xcatch.utils.Utils;
+import dev.dediamondpro.xcatch.gui.ViewGui;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SingleLineChart;
 import org.bukkit.Material;

@@ -13,14 +13,29 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-package io.github.dediamondpro.xcatch.commands;
+/*
+ * This file is part of XCatch.
+ *
+ * XCatch is free software: you can redistribute it and/or modify it under the terms of the GNU General
+ * Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ *
+ * XCatch is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with Foobar. If not, see
+ * <https://www.gnu.org/licenses/>.
+ */
 
-import io.github.dediamondpro.xcatch.XCatch;
-import io.github.dediamondpro.xcatch.data.PersistentData;
-import io.github.dediamondpro.xcatch.gui.ViewGui;
-import io.github.dediamondpro.xcatch.listeners.OnBlockBreak;
-import io.github.dediamondpro.xcatch.utils.FlagHandler;
-import io.github.dediamondpro.xcatch.utils.Utils;
+package dev.dediamondpro.xcatch.commands;
+
+import dev.dediamondpro.xcatch.XCatch;
+import dev.dediamondpro.xcatch.data.PersistentData;
+import dev.dediamondpro.xcatch.gui.ViewGui;
+import dev.dediamondpro.xcatch.listeners.OnBlockBreak;
+import dev.dediamondpro.xcatch.utils.FlagHandler;
+import dev.dediamondpro.xcatch.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
