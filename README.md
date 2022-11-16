@@ -1,6 +1,6 @@
 # XCatch
 ### Efficient yet effective plugin to catch X-rayers for Minecraft 1.13-1.19.
-XCatch analizes how a player is mining by looking it how many turns it makes and how many rare ores it finds in a small period of time.
+XCatch analyzes how a player is mining by looking how many turns they make and how many rare ores they find in a small period of time.
 ## Features
 - Send an alert to staff after a configurable amount of flags.
 
