@@ -15,6 +15,8 @@
 
 package dev.dediamondpro.xcatch.utils;
 
+import dev.dediamondpro.xcatch.XCatch;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -25,8 +27,8 @@ public class WebhookHandler {
 
     public static void sendWebhook(String content) {
         try {
-            String username = "XCatch";
-            String avatar = "";
+            String username = XCatch.config.getString("webhook-username");
+            String avatar = XCatch.config.getString("webhook-avatar");
             byte[] bytes = ("{\"username\":\"" + username + "\",\"avatar_url\":\"" + avatar + "\",\"content\":\"" + content + "\"}").getBytes(StandardCharsets.UTF_8);
             URL url = new URL("https://canary.discord.com/api/webhooks/1054718822709477417/SZWpYvX_dwXUZXVbT8IZPYdVkVVkjq51DA_kBiX5iKnqVlyd1mFJk_xHSjTjGYZjH4Cu");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
