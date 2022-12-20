@@ -153,14 +153,12 @@ ban-message: '§8[§cXCatch§8] §7Banned §c{player}§7 for §cx-ray§7 for §c
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                    DiscordSRV                        | #
+# |                  Discord  Messages                   | #
 # +------------------------------------------------------+ #
 ############################################################
-# Configuration for DiscordSRV integration
-
-# The id of the channel where you want the Discord message to be sent
-# Leave empty to disable all Discord related features
-discord-channel: ''
+# Configuration for the messages sent do Discord,
+# to enable Discord integration, please go to the DiscordSRV
+# or Discord Webhook section and enable one of those
 
 # Should XCatch send a Discord message for an alert?
 message-alert: true
@@ -180,7 +178,7 @@ alert-message-discord: '[XCatch] Flagged {player} for potential x-ray. {player} 
 # Should XCatch send a Discord message for a ban?
 message-ban: true
 
-# Message that is sent to staff if someone gets banned
+# Message that is sent to Discord if someone gets banned
 # Available variables:
 # {player}: the player who got banned
 # {flags}: amount of flags this player has
@@ -192,6 +190,35 @@ message-ban: true
 # {z}: Z Coordinate location where the ore was found
 # {world}: The name of the world where the ore was found
 ban-message-discord: '[XCatch] Banned {player} for x-ray. {player} mined {amount} {ore}. ({flags})'
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Discord Webhook                    | #
+# +------------------------------------------------------+ #
+############################################################
+# Configuration of the Discord webhook integration
+# Configure this OR DiscordSRV to enable Discord integration
+
+# The url of the discord webhook, leave blank to disable
+webhook-url: ''
+
+# The username to use in the webhook
+webhook-username: 'XCatch'
+
+# Url of the avatar of the webhook, blank for none
+webhook-avatar: ''
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     DiscordSRV                       | #
+# +------------------------------------------------------+ #
+############################################################
+# Configuration of the DiscordSRV integration
+# Configure this OR Discord Webhook to enable Discord integration
+
+# The id of the channel where you want the Discord message to be sent
+# Leave empty to disable DiscordSRV integration
+discord-channel: ''
 
 ############################################################
 # +------------------------------------------------------+ #
