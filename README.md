@@ -12,6 +12,8 @@ XCatch analyzes how a player is mining by looking how many turns they make and h
 - Ability to specify multiple ban times depending on how many previous bans a player has
 - Log flags in a Discord channel with DiscordSRV
 - Ability to execute commands after a number of flags
+  
+[<img src="https://www.bisecthosting.com/partners/custom-banners/793f80ea-c602-458b-968d-6a83df014fe4.webp" alt="https://bisecthosting.com/diamond" width=100%>](https://bisecthosting.com/diamond)
 ## Why use this over other plugins
 - Plugins that hide ores (like Orebfuscator) are generally very CPU intensive, while XCatch is not and those plugins can be bypassed if the player knows the seed, which can be easily obtained with a seedcracker mod, while XCatch cannot be easily bypassed.
 - Plugins that announce when a player has mined a lot of ores (like OreAnnouncer) have way more false flags when players are just lucky or when they find a big ore vein
